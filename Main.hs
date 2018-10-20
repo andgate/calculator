@@ -1,5 +1,6 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedLabels #-} 
 module Main where
 
 import Data.Text (Text, pack)
@@ -8,6 +9,10 @@ import Text.Megaparsec.Char
 import Text.Megaparsec.Error
 import qualified Text.Megaparsec.Char.Lexer as L
 import Control.Monad.Combinators.Expr
+
+import qualified GI.Gtk as Gtk
+import Data.GI.Base
+
 
 data Op
   = OpAdd
@@ -78,8 +83,30 @@ eval input =
     Right e -> simplify e
 
 
+
+main :: IO ()
+main = do
+  Gtk.init Nothing
+
+  win <- new Gtk.Window [ #title := "Hi there" ]
+
+  on win #destroy Gtk.mainQuit
+
+  button <- new Gtk.Button [ #label := "Click me" ]
+
+  on button #clicked (set button [ #sensitive := False,
+                                   #label := "Thanks for clicking me" ])
+
+  #add win button
+
+  #showAll win
+
+  Gtk.main
+
+{- 
 main :: IO ()
 main = do
   input <- getLine
   let output = eval input
   print output
+-}
