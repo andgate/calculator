@@ -41,7 +41,7 @@ expP :: Parser Exp
 expP = makeExprParser termP table <?> "expression"
 
 termP :: Parser Exp
-termP = ( EVal   <$> (   doubleP
+termP = ( EVal   <$> (   try doubleP
                      <|> (fromInteger <$> integerP)
                      )
         )
