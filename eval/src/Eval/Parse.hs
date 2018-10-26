@@ -24,14 +24,16 @@ parseExp input =
 sc :: Parser ()
 sc = L.space space1 empty empty
 
+lexeme  = L.lexeme sc
+
 parensP :: Parser a -> Parser a
 parensP = between (L.symbol sc "(") (L.symbol sc ")")
 
 integerP :: Parser Integer
-integerP = L.signed sc L.decimal
+integerP = L.signed sc (lexeme L.decimal)
 
 doubleP :: Parser Double
-doubleP = L.signed sc L.float
+doubleP = L.signed sc (lexeme L.float)
 
 expP :: Parser AST
 expP = makeExprParser termP table <?> "expression"
