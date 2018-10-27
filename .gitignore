@@ -1,2 +1,5 @@
+Makefile*
 eval.dll
 eval.dll.a
+debug/
+release/

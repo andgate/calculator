@@ -16,7 +16,14 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_eqButton_clicked();
+    void on_solveButton_clicked();
+    void on_n7_clicked();
+
+    void on_inputBox_returnPressed();
+
+    void on_clearEverythingButton_clicked();
+
+    void on_clearButton_clicked();
 
 private:
     Ui::MainWindow *ui;
