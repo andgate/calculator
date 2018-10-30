@@ -4,3 +4,4 @@ eval.dll.a
 debug/
 release/
 deploy/
+*.pro.user
